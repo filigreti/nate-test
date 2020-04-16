@@ -1,67 +1,47 @@
 <template>
-  <main v-if="$store.state.applications.length > 0" class="home-area">
-    <h1 class="header-one big">
-      Welcome, Lois!
-    </h1>
-    <div class="header-two small">
-      {{ Date.now() | sortDate }}
-    </div>
+  <main v-if="$store.state.applications.length " class="home-area">
+    <h1 class="header-one big">Welcome, Lois!</h1>
+    <div class="header-two small">{{ Date.now() | sortDate }}</div>
     <div class="mt-5 card-cont">
       <div
         class="card-area shadow-sm card-one d-flex flex-column justify-content-between align-items-start"
       >
-        <img src="@/assets/shield.svg" alt="" />
+        <img src="@/assets/shield.svg" alt />
         <div class="header-big">
           {{
-            $store.state.statistics.totalInsurancesBought < 10
-              ? "0" + $store.state.statistics.totalInsurancesBought
-              : $store.state.statistics.totalInsurancesBought
+          $store.state.statistics.totalInsurancesBought < 10
+          ? "0" + $store.state.statistics.totalInsurancesBought
+          : $store.state.statistics.totalInsurancesBought
           }}
         </div>
-        <div class="header-one small">
-          Total Insurance Bought
-        </div>
+        <div class="header-one small">Total Insurance Bought</div>
       </div>
       <div
         class="card-area shadow-sm card-one d-flex flex-column justify-content-between align-items-start"
       >
-        <img src="@/assets/shield.svg" alt="" />
-        <div class="header-big">
-          {{ $store.state.statistics.totalInsuranceAmount }}
-        </div>
-        <div class="header-one small">
-          Total Amount of Insurance
-        </div>
+        <img src="@/assets/shield.svg" alt />
+        <div class="header-big">{{ $store.state.statistics.totalInsuranceAmount }}</div>
+        <div class="header-one small">Total Amount of Insurance</div>
       </div>
       <div
         class="card-area shadow-sm card-one d-flex flex-column justify-content-between align-items-start"
       >
-        <img src="@/assets/doc.svg" alt="" />
-        <div class="header-big">
-          ₦{{ $store.state.statistics.totalClaimsAmount }}
-        </div>
-        <div class="header-one small">
-          Total Insurance Claims
-        </div>
+        <img src="@/assets/doc.svg" alt />
+        <div class="header-big">₦{{ $store.state.statistics.totalClaimsAmount }}</div>
+        <div class="header-one small">Total Insurance Claims</div>
       </div>
       <div
         class="card-area shadow-sm card-one d-flex flex-column justify-content-between align-items-start"
       >
-        <img src="@/assets/clip.svg" alt="" />
-        <div class="header-big">
-          {{ $store.state.statistics.totalInsuranceClaims }}
-        </div>
-        <div class="header-one small">
-          Total Amount of Claims
-        </div>
+        <img src="@/assets/clip.svg" alt />
+        <div class="header-big">{{ $store.state.statistics.totalInsuranceClaims }}</div>
+        <div class="header-one small">Total Amount of Claims</div>
       </div>
     </div>
     <div class="mt-5">
       <div class="main-table">
         <div>
-          <div style="color: #4D0032;padding:1rem" class="header-one  ">
-            Insurance Applications
-          </div>
+          <div style="color: #4D0032;padding:1rem" class="header-one">Insurance Applications</div>
         </div>
         <table class="table table-striped mb-0">
           <thead>
@@ -75,32 +55,21 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(application, index) in applications" :key="index">
+            <tr v-for="(application, index) in this.$store.state.applications" :key="index">
               <th class="scope-td" scope="row">{{ index + 1 }}</th>
               <td class="scope-td pr-5">{{ application.insuranceType }}</td>
               <td class="scope-td pr-5">₦{{ application.amount }}</td>
-              <td class="scope-td pr-5">
-                {{ application.createdDate | sortDate }}
-              </td>
+              <td class="scope-td pr-5">{{ application.createdDate | sortDate }}</td>
               <td class="scope-td">
-                <div
-                  class="complete d-flex align-items-center"
-                  v-if="application.complete"
-                >
-                  <div class="dot mr-3"></div>
-                  Completed
+                <div class="complete d-flex align-items-center" v-if="application.complete">
+                  <div class="dot mr-3"></div>Completed
                 </div>
                 <div class="incomplete d-flex align-items-center" v-else>
-                  <div class="red-dot mr-3 "></div>
-                  Incomplete
+                  <div class="red-dot mr-3"></div>Incomplete
                 </div>
               </td>
               <td class="scope-td">
-                <button
-                  @click="send(application)"
-                  class="button-claim"
-                  v-if="application.complete"
-                >
+                <button @click="send(application)" class="button-claim" v-if="application.complete">
                   Make a Claim
                   <svg
                     width="5"
@@ -142,9 +111,7 @@
     </div>
   </main>
   <main v-else class="d-flex justify-content-center align-items-center">
-    <div class="header-big">
-      Loading
-    </div>
+    <div class="header-big">Loading</div>
   </main>
 </template>
 
@@ -152,27 +119,22 @@
 import moment from "moment";
 export default {
   data() {
-    return {
-      applications: null,
-    };
+    return {};
   },
   filters: {
     sortDate: function(value) {
       if (!value) return "";
       return moment(value).format("Do MMM YYYY");
-    },
+    }
   },
   methods: {
     send(x) {
       this.$router.push({
         name: "AccountSettings",
-        params: { x },
+        params: { x }
       });
-    },
-  },
-  beforeMount() {
-    this.applications = this.$store.state.applications;
-  },
+    }
+  }
 };
 </script>
 
