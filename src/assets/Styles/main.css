@@ -1,0 +1,42 @@
+* {
+  font-family: "Muli";
+}
+a {
+  text-decoration: none !important;
+}
+a:hover {
+  color: inherit !important;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: #fbfbfd !important;
+}
+button {
+  outline: none !important;
+}
+
+.header-one {
+  color: #240f00;
+  font-size: 0.85rem;
+}
+
+.header-two {
+  color: #737373;
+  font-size: 0.85rem;
+}
+.purp {
+  color: #4d0032 !important;
+}
+.header-big {
+  color: #4d0032;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.big {
+  font-size: 1.4rem !important;
+}
+.small {
+  font-size: 0.75rem !important;
+}
