@@ -43,10 +43,13 @@ export default new Vuex.Store({
     async fetchStatistics({ commit }) {
       try {
         commit("setLoading", true);
-        let res = await axios.get("http://demo2943897.mockable.io/statistics", {
-          params: {},
-          headers: { token: token },
-        });
+        let res = await axios.get(
+          "https://demo2943897.mockable.io/statistics",
+          {
+            params: {},
+            headers: { token: token },
+          }
+        );
         commit("setLoading", false);
         let { statistics } = res.data;
         commit("setStatistics", statistics);
