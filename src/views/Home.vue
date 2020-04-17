@@ -110,7 +110,7 @@
       </div>
     </div>
   </main>
-  <main v-else class="d-flex justify-content-center align-items-center">
+  <main v-else class="d-flex justify-content-center align-items-center w-100" style="height:50vh">
     <div class="header-big">Loading</div>
   </main>
 </template>
