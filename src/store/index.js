@@ -29,10 +29,10 @@ export default new Vuex.Store({
     async fetchApplications({ commit }) {
       try {
         commit("setLoading", true);
-        let res = await axios.get(
-          "http://test.natterbase.com:5050/api/interview/get-applications",
-          { params: {}, headers: { token: token } }
-        );
+        let res = await axios.get("https://demo2943897.mockable.io/apps", {
+          params: {},
+          headers: { token: token },
+        });
         commit("setLoading", false);
         let { applications } = res.data;
         commit("setApplications", applications);
@@ -43,10 +43,10 @@ export default new Vuex.Store({
     async fetchStatistics({ commit }) {
       try {
         commit("setLoading", true);
-        let res = await axios.get(
-          "http://test.natterbase.com:5050/api/interview/get-statistics",
-          { params: {}, headers: { token: token } }
-        );
+        let res = await axios.get("http://demo2943897.mockable.io/statistics", {
+          params: {},
+          headers: { token: token },
+        });
         commit("setLoading", false);
         let { statistics } = res.data;
         commit("setStatistics", statistics);
